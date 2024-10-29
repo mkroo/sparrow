@@ -27,6 +27,9 @@ repositories {
 
 extra["snippetsDir"] = file("build/generated-snippets")
 
+val kotestVersion = "5.9.1"
+val kotestExtensionSpringVersion = "1.3.0"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
@@ -48,6 +51,12 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testImplementation("io.kotest:kotest-runner-junit5:${kotestVersion}")
+	testImplementation("io.kotest:kotest-assertions-core:${kotestVersion}")
+	testImplementation("io.kotest:kotest-property:${kotestVersion}")
+	testImplementation("io.kotest.extensions:kotest-extensions-spring:${kotestExtensionSpringVersion}")
+	testImplementation("io.mockk:mockk:1.13.12")
+	testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.0.25")
 	testImplementation("org.springframework.restdocs:spring-restdocs-webtestclient")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.testcontainers:junit-jupiter")
