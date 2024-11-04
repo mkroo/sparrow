@@ -63,6 +63,12 @@ dependencies {
 	testImplementation("org.testcontainers:mysql")
 	testImplementation("org.testcontainers:r2dbc")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	val isMac = System.getProperty("os.name").startsWith("Mac OS X")
+	val architecture = System.getProperty("os.arch")
+	if (isMac && architecture == "aarch64") {
+		developmentOnly("io.netty:netty-resolver-dns-native-macos:4.1.91.Final:osx-aarch_64")
+	}
 }
 
 kotlin {
