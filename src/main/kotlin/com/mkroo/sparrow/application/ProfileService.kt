@@ -1,6 +1,7 @@
 package com.mkroo.sparrow.application
 
 import com.mkroo.sparrow.domain.Account
+import com.mkroo.sparrow.domain.AccountId
 import com.mkroo.sparrow.domain.Profile
 import com.mkroo.sparrow.repository.ProfileRepository
 import org.springframework.stereotype.Service
@@ -16,6 +17,6 @@ class ProfileService(
     }
 
     fun listProfiles(account: Account) : Flux<Profile> {
-        return profileRepository.findByAccount(account)
+        return profileRepository.findByAccountId(AccountId(account.id))
     }
 }

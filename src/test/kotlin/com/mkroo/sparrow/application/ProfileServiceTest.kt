@@ -1,6 +1,7 @@
 package com.mkroo.sparrow.application
 
 import com.mkroo.sparrow.domain.Account
+import com.mkroo.sparrow.domain.AccountId
 import com.mkroo.sparrow.domain.Profile
 import com.mkroo.sparrow.repository.AccountRepository
 import com.mkroo.sparrow.repository.ProfileRepository
@@ -35,11 +36,11 @@ class ProfileServiceTest(
             val actual = profileService.createProfile(account, profileName, profileDescription)
 
             StepVerifier.create(actual)
-                .expectNextMatches { it.accountId == account.id && it.name == profileName && it.description == profileDescription }
+                .expectNextMatches { it.accountId == AccountId(account.id) && it.name == profileName && it.description == profileDescription }
                 .verifyComplete()
 
             StepVerifier.create(profileRepository.findAll())
-                .expectNextMatches { it.accountId == account.id && it.name == profileName && it.description == profileDescription }
+                .expectNextMatches { it.accountId == AccountId(account.id) && it.name == profileName && it.description == profileDescription }
                 .verifyComplete()
         }
     }
