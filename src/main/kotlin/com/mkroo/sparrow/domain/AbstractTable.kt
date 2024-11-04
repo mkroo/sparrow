@@ -1,5 +1,7 @@
 package com.mkroo.sparrow.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -10,6 +12,7 @@ import java.time.LocalDateTime
 abstract class AbstractTable: Persistable<Long> {
     @Id
     @Column("id")
+    @JsonProperty("id")
     private var _id: Long? = null
 
     val id: Long
@@ -19,6 +22,7 @@ abstract class AbstractTable: Persistable<Long> {
         return _id
     }
 
+    @JsonIgnore
     override fun isNew(): Boolean {
         return _id == null
     }
